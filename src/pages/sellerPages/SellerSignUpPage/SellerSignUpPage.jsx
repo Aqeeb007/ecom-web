@@ -1,0 +1,157 @@
+import { Avatar, Button, Input } from "antd";
+import { Controller, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
+const SellerSignUpPage = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      name: "",
+      shopName: "",
+      address: "",
+      email: "",
+      password: "",
+      avatar: null,
+      reEnterPassword: "",
+    },
+  });
+
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <div className="border-gray-200 shadow-lg bg-white border-2 space-y-4 flex items-center flex-col px-3 py-6 w-[400px] 800px:w-[600px] rounded-xl h-auto">
+        <Avatar
+          src="https://github.com/shadcn.png"
+          className="w-24 h-24 rounded-full"
+          alt=""
+        />
+        <form
+          action=""
+          className="grid w-full gap-4 800px:grid-cols-2"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Name
+            </label>
+            <div className="mt-1">
+              <Controller
+                name="name"
+                control={control}
+                render={({ field }) => (
+                  <Input {...field} autoComplete required />
+                )}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Shop Name
+            </label>
+            <div className="mt-1">
+              <Controller
+                name="shopName"
+                control={control}
+                render={({ field }) => (
+                  <Input {...field} autoComplete required />
+                )}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <div className="mt-1">
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <Input {...field} autoComplete required />
+                )}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <div className="mt-1">
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <Input type="password" {...field} autoComplete required />
+                )}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Re enter password
+            </label>
+            <div className="mt-1">
+              <Controller
+                name="reEnterPassword"
+                control={control}
+                render={({ field }) => (
+                  <Input.Password {...field} autoComplete required />
+                )}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Full Address
+            </label>
+            <div className="mt-1">
+              <Controller
+                name="address"
+                control={control}
+                render={({ field }) => (
+                  <Input {...field} autoComplete required />
+                )}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Avatar
+            </label>
+            <div className="mt-1">
+              <Controller
+                name="avatar"
+                control={control}
+                render={({ field }) => (
+                  <Input type="file" {...field} autoComplete required />
+                )}
+              />
+            </div>
+          </div>
+        </form>
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          className="text-white bg-blue-600 w-36"
+          htmlType="submit"
+        >
+          Sign up
+        </Button>
+        <div>
+          {"Already Have an Account? "}{" "}
+          <span>
+            <Link
+              to={"/login"}
+              className="font-semibold text-blue-600 underline hover:text-blue-500"
+            >
+              Login
+            </Link>
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SellerSignUpPage;
